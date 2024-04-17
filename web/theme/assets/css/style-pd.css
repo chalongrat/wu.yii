@@ -1,0 +1,194 @@
+.pagination {
+  display: inline-block;
+  border-radius: 3px;
+  float: right;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  cursor: pointer;
+  /* background-color: #f5f5f5; */
+  box-shadow: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+  background-color: #ddd;
+}
+
+.pagination li {
+  margin-left: 3px;
+  color: black;
+  float: left;
+  padding: 8px 14px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  background-color: transparent;
+  border-radius: 3px;
+  cursor: pointer !important;
+}
+.pagination li.active {
+  background-color: #403c42 !important;
+  /* background-color: #580376 !important; */
+  color: white;
+  font-weight: bold;
+}
+
+.pagination li a {
+  color: #777777;
+  padding: 0;
+  /* background-color: #f5f5f5 !important; */
+  border: 0;
+
+  background-color: transparent !important;
+}
+
+.pagination li a:hover {
+  /* background-color: #ddd !important; */
+  color: transparent;
+}
+
+.pagination li:hover a {
+  color: white;
+}
+
+.pagination li.active a {
+  color: white;
+  padding: 0;
+  /* background-color: #580376 !important; */
+  background-color: #403c42 !important;
+
+  /* border: #580376; */
+  border: #403c42;
+}
+
+.pagination li:hover:not(.active) {
+  background-color: #580376;
+}
+
+.intel-new-color-main {
+  background-color: #344a5e !important;
+  color: #ffffff !important;
+}
+.pagination {
+  text-align: center;
+  overflow: hidden;
+}
+
+ul.breadcrumb li::before {
+  display: inline-block;
+  padding-right: 2px;
+  padding-left: 2px;
+  color: #6c757d;
+  content: "/";
+}
+ul.breadcrumb li:first-child:before {
+  padding-right: 0rem;
+  padding-left: 0rem;
+  content: "";
+}
+.tag-danger {
+  background: #db2828 !important;
+}
+.wizard > .content > .body {
+  position: inherit !important;
+}
+.form-title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 18px;
+}
+.dropify-wrapper .dropify-message span.file-icon {
+  font-size: 20px !important;
+}
+
+.custom-file-upload {
+  text-align: center !important;
+  border: 1px solid #cccccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.custom-file-upload:hover {
+  border: 1px solid #62b0df;
+  background: #62b0df;
+  color: #ffffff;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+/* .has-success{
+	width: 80% !important;
+} */
+.form-icon {
+  width: 15%;
+  height: 35px;
+  border: 1px solid #ccc;
+  /* border-radius: 3px; */
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  display: inline-block;
+}
+.form-icon-style {
+  padding-left: 15px;
+  padding-right: 15px;
+  vertical-align: bottom;
+}
+.form-input-with-icon {
+  width: 85%;
+  height: 35px;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: -5px;
+}
+.btn-update-gride {
+  padding: 4px;
+  border-radius: 3px;
+  background-color: #f0b144;
+  color: #ffffff !important;
+  font-weight: 900;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-delete-gride {
+  padding: 4px;
+  border-radius: 3px;
+  background-color: #dc3644;
+  color: #ffffff !important;
+  font-weight: 900;
+  display: inline-block;
+  cursor: pointer;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: white !important;
+  border: 1px solid #580376;
+  background-color: #580376 !important;
+  background: #580376 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white !important;
+  border: 1px solid #004660;
+  background-color: #004660;
+  background: #004660;
+}
+
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 0;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  background-color: transparent !important;
+  border: 0;
+}
+
+.dark-mode .pagination li a {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+#w0-success-0 .btn-close {
+  padding: 16px;
+}

@@ -35,6 +35,6 @@ tests/_support/_generated
 #vagrant folder
 /.vagrant
 
+/.vscode
 
-config/db.php
-config/test_db.php
+web/js/staticRoute.js

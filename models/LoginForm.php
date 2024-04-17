@@ -2,19 +2,26 @@
 
 namespace app\models;
 
+use app\components\UserIdentity;
+use stdClass;
 use Yii;
 use yii\base\Model;
 
 /**
  * LoginForm is the model behind the login form.
+ *
+ * @property-read User|null $user
+ *
  */
 class LoginForm extends Model
 {
     public $username;
     public $password;
     public $rememberMe = true;
+    public $role = 2;
 
     private $_user = false;
+    public $lang = "th";
 
 
     /**
@@ -27,53 +34,36 @@ class LoginForm extends Model
             [['username', 'password'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
-            ['password', 'validatePassword'],
         ];
     }
 
-    /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
-     *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
-     */
-    public function validatePassword($attribute, $params)
+    public function auth(): mixed
     {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
+        $ident = new UserIdentity();
+        $identInfo = $ident->authAd($this->username, $this->password, $this->role);
 
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+        if ($identInfo->code === 200) {
+
+            Yii::$app->session->set("profile", $identInfo->profile);
+
+            $u = User::findByUsername($this->username);
+
+            if (empty($u)) {
+                $u = new User();
+                $u->USERNAME = $this->username;
+                $u->PASSWORD_HASH = Yii::$app->security->generatePasswordHash($this->password);
+                $u->PERSON_ID = $identInfo->profile->person_id;
+                $u->USER_LANG = $this->lang;
+                $u->CREATED_AT = date('d-M-Y h.i.s a');
             }
-        }
-    }
 
-    /**
-     * Logs in a user using the provided username and password.
-     * @return boolean whether the user is logged in successfully
-     */
-    public function login()
-    { 
-        if ($this->validate()) { 
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
-        } else {
-            return false;
-        }
-    }
+            $u->ACCESS_TOKEN = Yii::$app->security->generateRandomString() . "." . time();
+            $u->UPDATED_AT = date('d-M-Y h.i.s a');
+            $u->save();
 
-    /**
-     * Finds user by [[username]]
-     *
-     * @return User|null
-     */
-    public function getUser()
-    {
-        if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            return Yii::$app->user->login($u, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
 
-        return $this->_user;
+        return false;
     }
 }
