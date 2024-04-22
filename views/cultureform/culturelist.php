@@ -2,10 +2,14 @@
 
 use yii\helpers\Url;
 
-$lang = (Yii::$app->users->getUserlanguage() == 'th') ? 'th' : 'en';
 $profile = Yii::$app->session->get("profile");
+$lang = Yii::$app->session->get("sessionLang");
 
 $this->title = 'รายการภาระงาน';
+
+use yii\web\View;
+
+$this->registerJs('loadScript(["/app/cultureform/cultureForm.js"], function() { loadData("' . $formType . '", "' .  $bypass . '");});', View::POS_END);
 ?>
 <style>
     /* CSS */
@@ -79,33 +83,34 @@ $this->title = 'รายการภาระงาน';
 
 <form id="formFormList">
     <div class="section-body">
-        <div style="overflow-x: auto;">
+        <div>
             <div class="card-body">
 
                 <input type="hidden" id="lang" class="form-control" value="<?= $lang ?>">
                 <input type="hidden" id="personid" class="form-control" value="<?= $profile->person_id ?>">
                 <input type="hidden" id="formID" class="form-control" value="<?= $formType ?>">
 
-                <div class="card" id="indexDisp" style="overflow-x: auto;">
+                <div class="card" id="indexDisp">
                     <div class="card-body">
                         <div class="row clearfix">
                             <div class="col-lg-8">
-                                <i class="fa fa-list"></i> <u><span name="">รายการภาระงาน</span></u>
+                                <i class="fa fa-list"></i> <u><span name="jobfrm1_5"></span></u>
                             </div>
 
                             <div class="col-lg-4 text-end">
-                                <button type="button" class="bAdd" onClick="$.loadPage('/cultureform/culeditform', 'เพิ่มภาระงาน');"></button>
+                                <button type="button" class="bAdd" onClick="openForm('','');"></button>
                             </div>
                         </div>
 
                         <br>
 
-                        <table id="tbCultureform" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                        <table id="tbCultureform" class="table table-striped table-bordered dt-responsive" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th class="text-center" name="jobfrm1_20"></th>
                                     <th class="text-center" name="jobfrm1_30"></th>
                                     <th class="text-center" name="joba2_20"></th>
+                                    <th class="text-center" name="culture_5"></th>
                                     <th class="text-center" name="jobfrm1_60"></th>
                                 </tr>
                             </thead>

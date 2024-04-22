@@ -57,8 +57,6 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest)
             return $this->redirect(['login']);
 
-
-
         return $this->redirect(['/main']);
     }
 
@@ -77,7 +75,7 @@ class SiteController extends Controller
         }
 
         $this->layout = "blank";
-        return $this->render('login_v2', [
+        return $this->render('login_v3', [
             'lf' => $lf,
         ]);
     }

@@ -94,3 +94,7 @@ a.desc:after {
 a{
     text-decoration: none;
 }
+
+.select2-container--open {
+    z-index: 99999999999999;
+}

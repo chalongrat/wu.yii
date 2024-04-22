@@ -14,6 +14,8 @@ $.loadPage = (url, e, callback) => {
         });
 
     if (e !== undefined) setPath(url, e);
+
+    checkServer();
 };
 
 // function loadScript(filepath, callback) {
@@ -37,6 +39,10 @@ $.loadPage = (url, e, callback) => {
 //     buttonClass();
 
 //     return true;
+// ไม่ควร return true ตรงนี้เพราะการโหลดสคริปต์เป็นแบบ asynchronous
+// ค่า true อาจจะถูก return ก่อนที่สคริปต์จะโหลดเสร็จสิ้นทั้งหมด
+// ในกรณีที่คุณต้องการทำงานเสร็จจริงๆ หลังจากการโหลดสคริปต์สมบูรณ์แล้ว
+// ควรเรียกใช้ callback ในฟังก์ชัน scriptLoaded()
 // }
 
 function loadScript(filepath, callback) {
@@ -66,11 +72,6 @@ function loadScript(filepath, callback) {
 
         i++;
     }
-
-    // ไม่ควร return true ตรงนี้เพราะการโหลดสคริปต์เป็นแบบ asynchronous
-    // ค่า true อาจจะถูก return ก่อนที่สคริปต์จะโหลดเสร็จสิ้นทั้งหมด
-    // ในกรณีที่คุณต้องการทำงานเสร็จจริงๆ หลังจากการโหลดสคริปต์สมบูรณ์แล้ว
-    // ควรเรียกใช้ callback ในฟังก์ชัน scriptLoaded()
 }
 
 function setPath(url, str) {
@@ -93,3 +94,7 @@ function setPath(url, str) {
         },
     });
 }
+
+$(".select2").select2({
+    theme: "bootstrap-5",
+});

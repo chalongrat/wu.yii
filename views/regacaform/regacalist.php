@@ -8,7 +8,7 @@ $lang = Yii::$app->session->get("sessionLang");
 $this->title = 'รายการภาระงาน';
 ?>
 
-<form id="acaprvlistForm">
+<form id="RegacalistForm">
     <div class="section-body">
         <div style="overflow-x: auto;">
             <div class="card-body">
@@ -23,22 +23,18 @@ $this->title = 'รายการภาระงาน';
                             <div class="col-lg-8">
                                 <i class="fa fa-list"></i> <u><span name="jobfrm1_5"></span></u>
                             </div>
-
-                            <div class="col-lg-4 text-end">
-                                <button type="button" class="bAdd" onClick="openForm('','<?= $formType ?>');"></button>
-                            </div>
                         </div>
 
                         <br>
 
-                        <table id="tbAcaprvform" class="table table-striped table-bordered dt-responsive" width="100%" cellspacing="0">
+                        <table id="tbRegacaform" class="table table-striped table-bordered dt-responsive" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center" name="acaprv_1"></th>
-                                    <th class="text-center" name="acaprv_2"></th>
-                                    <th class="text-center" name="acaprv_3"></th>
-                                    <th class="text-center" name="acaprv_11"></th>
-                                    <th class="text-center" name="acaprv_4"></th>
+                                    <th class="text-center" name="regaca_1"></th>
+                                    <!-- <th class="text-center" name="regaca_2"></th> -->
+                                    <th class="text-center" name="regaca_3"></th>
+                                    <th class="text-center" name="regaca_4"></th>
+                                    <th class="text-center" name="regaca_5"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -59,7 +55,7 @@ $this->title = 'รายการภาระงาน';
 </form>
 
 <script>
-    loadScript(["/app/acaprvform/acaprvform.js"], function() {
+    loadScript(["/app/regacaform/regacaform.js"], function() {
         loadData("<?= $formType ?>");
     });
 </script>

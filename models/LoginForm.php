@@ -43,23 +43,41 @@ class LoginForm extends Model
         $identInfo = $ident->authAd($this->username, $this->password, $this->role);
 
         if ($identInfo->code === 200) {
-
+            // set user profile 
             Yii::$app->session->set("profile", $identInfo->profile);
 
             $u = User::findByUsername($this->username);
+
+            // if ($u) {
+            //     if (!$u->USER_LANG) {
+            //         $u->USER_LANG = $this->lang;
+            //         $u->UPDATED_AT = date('d-M-Y h.i.s a');
+            //         $u->save();
+
+            //         //set lang
+            //         Yii::$app->session->set("sessionLang", $this->lang);
+            //     } else {
+            //         //set lang
+            //         Yii::$app->session->set("sessionLang", $u->USER_LANG);
+            //     }
+            // }
 
             if (empty($u)) {
                 $u = new User();
                 $u->USERNAME = $this->username;
                 $u->PASSWORD_HASH = Yii::$app->security->generatePasswordHash($this->password);
                 $u->PERSON_ID = $identInfo->profile->person_id;
-                $u->USER_LANG = $this->lang;
+                $u->USER_LANG = "th";
                 $u->CREATED_AT = date('d-M-Y h.i.s a');
+                $u->ACCESS_TOKEN = Yii::$app->security->generateRandomString() . "." . time();
             }
 
-            $u->ACCESS_TOKEN = Yii::$app->security->generateRandomString() . "." . time();
+            Yii::$app->session->set("sessionLang", $u->USER_LANG);
+
+
             $u->UPDATED_AT = date('d-M-Y h.i.s a');
             $u->save();
+
 
             return Yii::$app->user->login($u, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }

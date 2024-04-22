@@ -18,27 +18,31 @@ $this->registerMetaTag(['http-equiv' => 'X-UA-Compatible', 'content' => 'ie=edge
 $this->registerMetaTag(['property' => 'metaIdentity', 'content' => Yii::$app->user->identity->USERNAME  ? base64_encode(Yii::$app->user->identity->USERNAME) : '']);
 // $this->registerMetaTag(['property' => 'metaGender', 'content' => Yii::$app->user->identity->GENDER  ? base64_encode(Yii::$app->user->identity->GENDER) : '']);
 $profile = Yii::$app->session->get("profile");
+$lang = Yii::$app->session->get("sessionLang");
 
 if (!isset($profile))
     return Yii::$app->response->redirect(['site/login']);
 ?>
 
+<style>
+    /* .signout {
+        color: white;
+    } */
+
+    .signout:hover {
+        color: #f0b144;
+    }
+</style>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language; ?>" dir="ltr">
 
 <head>
     <title>:: WU AWIS :: <?= Html::encode($this->title); ?></title>
-    <!-- <link href="/manifest.json" rel="manifest"> -->
     <?php $this->head(); ?>
 </head>
 
 <body class="font-montserrat sidebar_dark" id="body-app">
-    <script>
-        // if ('serviceWorker' in navigator) {
-        //     navigator.serviceWorker.register('/js/service-worker.js');
-        // }
-    </script>
+
     <?php $this->beginBody() ?>
 
     <div class="page-loader-wrapper">
@@ -55,23 +59,27 @@ if (!isset($profile))
                     </div>
                     <div class="right">
                         <ul class="nav nav-pills">
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">ภาษา</a>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="/index.php?r=cfg-menu%2Fpriv&amp;id=75&amp;language=en"><img class="w20 mr-2" src="theme/assets/images/flags/us.svg">&nbsp;&nbsp;อังกฤษ</a>
-                                    <!--div class="dropdown-divider"></div-->
                                     <a class="dropdown-item" href="/index.php?r=cfg-menu%2Fpriv&amp;id=75&amp;language=th"><img class="w20 mr-2" src="theme/assets/images/flags/th.svg">&nbsp;&nbsp;ไทย</a>
+                                </div>
+                            </li> -->
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><span name="nav_1"></span></a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" onclick="switchLang('en',<?= $profile->person_id ?>);"><img class="w20 mr-2" src="theme/assets/images/flags/us.svg">&nbsp;&nbsp;English</a>
+                                    <a class="dropdown-item" onclick="switchLang('th',<?= $profile->person_id ?>);"><img class="w20 mr-2" src="theme/assets/images/flags/th.svg">&nbsp;&nbsp;ไทย</a>
                                 </div>
                             </li>
                         </ul>
 
                         <div class="notification d-flex">
                             <div class="dropdown d-flex">
-                                <a class="nav-link icon d-flex btn btn-default btn-icon ml-1" data-toggle="dropdown">
-
-                                    <!-- <img src="/uploads/perperson/dc22f02ebb10a68b583d24cd2af350f8.jpg" onerror="this.src='/img/avatar.jpeg'" class="avatar"> -->
-                                    <!-- <img src="/uploads/perperson/dc22f02ebb10a68b583d24cd2af350f8.jpg" class="avatar"> -->
-
+                                <!-- <a class="nav-link icon d-flex btn btn-default btn-icon ml-1" data-toggle="dropdown"> -->
+                                <a class="nav-link icon d-flex btn btn-default btn-icon ml-1">
                                     <?php if ($profile->person_id == 6500000064) { ?>
                                         <div class="content-cover img-thumbnail rounded-circle " width="10p">
                                             <img class="content-image avatar-xxxl" src="/theme/assets/images/batman.png" width="10p">
@@ -85,12 +93,18 @@ if (!isset($profile))
                                     <span class="user_name">&nbsp;<?= $profile->full_name ?></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-
-                                    <!-- <a class="dropdown-item" href="/index.php?r=per-person%2Fpersonalsetting"><i class="dropdown-icon fa fa-address-card-o"></i>ตั้งค่าส่วนบุคคล </a> -->
-                                    <span class="dropdown-item" onclick="themeChange();" style="cursor: pointer;"><i class="dropdown-icon far fa-moon" id="icon-mode"></i> <span id="text-mode">Dark Mode</span></span>
-                                    <a class="dropdown-item" href="/site%2Flogout"><i class="dropdown-icon fa fa-power-off"></i>ออกจากระบบ </a>
+                                <div class="nav-link icon d-flex btn btn-default btn-icon ml-1">
+                                    <div class="content-cover">
+                                        <!-- <span name="nav_2"></span> -->
+                                        <!-- <i class="dropdown-icon fa fa-power-off"></i> -->
+                                        <a class="signout" href="/site%2Flogout"><img src="/theme/assets/images/logout.png" width="20p" height="20p">&nbsp;<span name="nav_2"></span></a>
+                                    </div>
                                 </div>
+
+                                <!-- <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <span class="dropdown-item" onclick="themeChange();" style="cursor: pointer;"><i class="dropdown-icon far fa-moon" id="icon-mode"></i> <span id="text-mode">Dark Mode</span></span>
+                                    <a class="dropdown-item" href="/site%2Flogout"><i class="dropdown-icon fa fa-power-off"></i><span name="nav_2"></span></a>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -99,7 +113,7 @@ if (!isset($profile))
                 <div style="padding-top: 65px;"></div>
 
                 <div class="col-12" style="margin-left: 30px; margin-right: 800px;" id="divPath">
-                    <a class="header-brand" href="<?= Url::to(['site/index']) ?>"><img src="<?= Url::base() ?>/theme/assets/images/home.png" width="25px" /> หน้าหลัก</a>
+                    <a class="header-brand" href="<?= Url::to(['site/index']) ?>"><img src="<?= Url::base() ?>/theme/assets/images/home.png" width="25px" /> <span name="mcard_1"></span></a>
                 </div>
 
                 <?= Breadcrumbs::widget([
@@ -131,3 +145,22 @@ if (!isset($profile))
 
 </html>
 <?php $this->endPage() ?>
+
+<script>
+    renderLabel("aps-job", lang, "apsJob");
+
+    function switchLang(lang, person_id) {
+        $.ajax({
+            url: `http://localhost:8080/users/updatelang?lang=${lang}&person_id=${person_id}`,
+            // url: `${baseUrl}/users/updatelang?lang=${lang}&person_id=${person_id}`,
+
+            type: "GET",
+            success: function(data) {
+                window.location.reload();
+            },
+            error: function(response) {
+                console.log("check fail");
+            },
+        });
+    }
+</script>

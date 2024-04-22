@@ -5,6 +5,13 @@ use app\assets\AppAsset;
 /** @var yii\web\View $this */
 $this->registerJsFile('@web/app/card/menuCard.js', ['depends' => AppAsset::className()]);
 $this->title = 'หน้าหลัก';
+
+$profile = Yii::$app->session->get("profile");
+$lang = Yii::$app->session->get("sessionLang");
+
+// var_dump($lang);
+// die;
+
 ?>
 
 <style>
@@ -185,6 +192,7 @@ $this->title = 'หน้าหลัก';
 </style>
 
 <div class="site-index" id="menuCard">
+    <input type="hidden" id="lang" class="form-control" value="<?= $lang ?>">
     <div class="section-body">
         <div style="overflow-x: hidden;">
             <div class="card-body">

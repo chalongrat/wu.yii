@@ -171,23 +171,16 @@ body {
   color: #113f50;
 }
 .page-header {
-  /* border-color: #fff; */
-  /* background: #f6685e; */
-  /* background: #2b3035; */
-
-  /* background: #1a2e35; */
-  background: #214252;
-
-  /* background-image: linear-gradient(to right, #1a2e35, #185e5a); */
-  /* background: #1cbbb4; */
-  /* border: 1px solid #1cbbb4; */
-  color: #fff;
-  /* background: radial-gradient(#f7c37e, #f6685e); */
+  /* background: #242e4d; */
+  background: #F9F3EC;
+  color: #717171;
+  /* background: radial-gradient(#242e4d, #897e79); */
+  /* background-image: linear-gradient(to bottom, #242e4d, #4e4d4d); */
 }
 
-.page-header .right .nav-pills .nav-link {
+/* .page-header .right .nav-pills .nav-link {
   color: #fff;
-}
+} */
 #header_top .brand-logo {
   background: #fb6722;
   width: 35px;
@@ -253,7 +246,9 @@ body {
   border-color: #f5f5f7;
 }
 .auth .auth_left {
-  background: #fff;
+  /* background: #fff; */
+  background: #F9F3EC;
+  
 }
 .gender_overview {
   background: #f5f5f7;
@@ -302,20 +297,28 @@ body {
 .tag-orange {
   background: #ff5202;
 }
+
 .tag-danger {
   background: #ff5202;
 }
+
 .auth .auth_left {
-  /* background: radial-gradient(#f7c37e, #f6685e); */
-  /* background: radial-gradient(#686765, #2e2c2c); */
-  /* background-color: #1a2e35; */
-  background-color: #214252;
+  /* background: linear-gradient(135deg,rgba(#242e4d, .9),rgba(#897e79, .9)); */
+  /* background: radial-gradient(#242e4d, #897e79); */
+  /* background: radial-gradient(#897e79, #242e4d); */
+  /* background: radial-gradient(#F9F3EC, #06BBCC); */
+  background-color: #fff;
 }
 
 .card-login {
-  /* border: 2px solid #6c3483; */
-  border: 3px solid #1cbbb4;
+  background-color: transparent;
+  /* background-color: rgba(255, 255, 255, 0.5); */
 
+  background: hsl(0, 0%, 100%);
+  backdrop-filter: blur(30px);
+
+  /* border: 1px solid #ccc;  */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* ตัวอย่างการกำหนดเงา */
 }
 
 .btn:hover {
@@ -327,27 +330,17 @@ body {
 .btn-login {
   min-height: 50px;
   width: 100%;
-  /* background-color: #6c3483; */
-  /* background-color: #f6b45e; */
-  /* background-color: #5f5e5c; */
-  background-color: #1cbbb4;
-  
+  background-color: #83807b;
   color: #fff;
 }
 
 .btn-login:hover {
-  /* background-color: #83807b; */
-  background-color: #41e3db;
+  background-color: #9f9f9f;
 }
 
 .menu-card:hover  {
-  /* background-color: #83807b; */
-  /* background-color: #41e3db; */
-  /* border: 0.5px solid #214252; */
   border: 0.5px solid #214252;
-
   transform: scale(1.03);
-  /* transition: all .0s ease-in-out; */
 
 }
 
@@ -370,14 +363,18 @@ body {
 }
 
 .auth .auth_left .card {
-  padding: 20px;
+  /* padding-right: 20px;
+  padding-left: 20px; */
+
+  padding: 10px;
+  
   /* right: -150px; */
   z-index: 9;
 }
 @media only screen and (max-width: 1024px) {
-  .auth .auth_left .card {
+  /* .auth .auth_left .card {
     right: -50px;
-  }
+  } */
 }
 @media only screen and (max-width: 992px) {
   .auth .auth_left .card {

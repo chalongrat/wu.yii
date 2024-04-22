@@ -34,13 +34,24 @@ class AppAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css',
         'https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css',
 
+        'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css',
+
         'https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css',
+
+        'https://hrms.wu.ac.th/bootstrap-datepicker-thai/css/datepicker.css',
+
         'theme/assets/css/main.css',
         'theme/assets/css/theme1.css',
         'theme/assets/css/style-pd.css',
+
+        'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+
         'css/app.css',
     ];
     public $js = [
+
         'theme/assets/bundles/lib.vendor.bundle.js',
         'theme/assets/js/core.js',
         // 'https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js',
@@ -56,7 +67,24 @@ class AppAsset extends AssetBundle
         'https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js',
         'https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js',
         'https://cdn.jsdelivr.net/npm/sweetalert2@11',
+
+        'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+
+        'https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js',
+
+
+        'https://hrms.wu.ac.th/bootstrap-datepicker-thai/js/bootstrap-datepicker.js',
+        'https://hrms.wu.ac.th/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js',
+        'https://hrms.wu.ac.th/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js',
+
+
+
         'js/staticRoute.js',
+
+        'js/alert.js',
+        'js/server.js',
+
+        // 'js/app.js',
         'js/app.js',
         // 'app/js/route.js',
 

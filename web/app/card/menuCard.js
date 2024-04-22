@@ -1,10 +1,10 @@
 // document.getElementById("indexDisp").style.display = "block";
 // document.getElementById('detailDisp').style.display = "none";
-
+checkServer();
 // *⁡⁣⁣⁢++++++++++++++++++++++++++++++++++++ :: Label :: +++++++++++++++++++++++++++++++++++++⁡⁣⁣⁢+++++++
 var arrMenu = [];
 var lang = $("#lang").val();
-// renderLabel("aps-job", lang, "apsJob");
+renderLabel("aps-job", lang, "apsJob");
 // *⁡⁣⁣⁢++++++++++++++++++++++++++++++++++++ :: End :: +++++++++++++++++++++++++++++++++⁡⁣⁣⁢+++++++++++++
 
 // ?++++++++++++++++++++++++++++++++++++ :: Render :: +++++++++++++++++++++++++++++++++++⁡++++++++
@@ -13,13 +13,13 @@ var isResult = false;
 $(document).ready(function () {
     localStorage.clear();
     indexPage();
-
-    // console.log(arrMenu);
 });
 // ?⁢++++++++++++++++++++++++++++++++++++ :: End :: ++++++++++++++++++++++++++++++++++++++++++++++
 
 // TODO+++++++++++++++++++++++++++++++++ :: View :: +++++++++++++++++++++++++++++++++++++++++++++
 function indexPage() {
+    // console.log(lang);
+
     console.log(baseUrl + "aps/jobagreeconf/dispregconf");
 
     $.ajax({
@@ -44,21 +44,21 @@ function indexPage() {
                     JSONTABLE: data.dt[xi].JSONTABLE,
                 });
             }
-
             let html1 = "";
             for (var i = 0; i < data.dt.length; i++) {
                 if (data.dt[i].JOBAGREECONF_LEVEL == 2) {
                     html1 += drawHeader(data.dt[i].JOBAGREECONF_NAME, data.dt[i].JOBAGREECONF_ID, data.dt[i].JOBAGREECONF_CODE);
                 }
             }
-
             $("#dinamic_format").html(html1);
         },
-        error: function () {
-            console.log("Error in Operation");
+        error: function (response) {
+            console.log("error : " + response);
+            // redAlert(404);
         },
     });
 }
+
 // TODO⁣+++++++++++++++++++++++++++++++++ :: End :: ++++++++++++++++++++++++++++++++++++++++++++++
 
 // !⁣+++++++++++++++++++++++++++++++++++++++ :: Zone -> Action :: ++++++++++++++++++++++++++++++++
@@ -127,24 +127,36 @@ function drawSub_Menu(cardId, realID) {
         strHtml += '<div class="card-body" style="overflow-y: auto;">';
         strHtml += '<ul class="list-unstyled feeds_widget">';
 
+        if (realID == "ACA20001") {
+            // Fix menu manage
+            strHtml += `<li class="row">`;
+            strHtml += '<div class="col-1">';
+            strHtml += '<img src="theme/assets/images/main-menu.png" width="20px" />';
+            strHtml += "</div>";
+            strHtml += `<div class="col-11">`;
+            strHtml += '<b class="title">' + " โครงการบริการวิชาการ (บันทึกโดย ศบว.)" + "</b><br>";
+            strHtml += `<small>&nbsp;&nbsp;<i class='fa fa-caret-right' style='color: red;'></i>&nbsp;&nbsp;<a href="javascript:$.loadPage('/regacaform/index?formType=${realID}', '${realID}');"> <span class="fixedfront">โครงการย่อย/กิจกรรมในโครงการ</span></a></small>`;
+            strHtml += "</div>";
+            strHtml += "</li>";
+            //-----END-----
+        }
+
         for (var i = 0; i < arrMenu.length; i++) {
             if (arrMenu[i].JOBAGREECONF_PARENT == cardId) {
-                strHtml += "<li>";
-                strHtml += '<div class="feeds-left">';
+                strHtml += `<li class="row">`;
+                strHtml += '<div class="col-1">';
                 // strHtml += '<i class="fa fa-leanpub"></i>';
-
                 strHtml += '<img src="theme/assets/images/main-menu.png" width="20px" />';
-
                 strHtml += "</div>";
-                strHtml += '<div class="feeds-body">';
-                strHtml += '<h4 class="title">' + arrMenu[i].JOBAGREECONF_NAME + "</h4>";
 
+                strHtml += '<div class="col-11">';
+                strHtml += '<b class="title">' + arrMenu[i].JOBAGREECONF_NAME + "</b><br>";
                 strHtml += drawMenuLink(arrMenu[i].JOBAGREECONF_ID);
-
                 strHtml += "</div>";
                 strHtml += "</li>";
             }
         }
+
         strHtml += "</ul>";
         strHtml += "</div>";
     } else {
@@ -178,7 +190,7 @@ function drawMenuLink(cardIDSub) {
 
             strHtml += `<small>&nbsp;&nbsp;<i class='fa fa-caret-right' style='color: red;'></i>&nbsp;&nbsp;<a href="javascript:$.loadPage('/${
                 arrMenu[i].JSONMODULE ? arrMenu[i].JSONMODULE.toLowerCase() : "xxxx"
-            }/index?formType=${arrMenu[i].JOBAGREECONF_CODE}', '${arrMenu[i].JOBAGREECONF_CODE}');"> <span class="fixedfront">${arrMenu[i].JOBAGREECONF_NAME}</span></a></small>`;
+            }/index?formType=${arrMenu[i].JOBAGREECONF_CODE}', '${arrMenu[i].JOBAGREECONF_CODE}');"> <span class="fixedfront">${arrMenu[i].JOBAGREECONF_NAME}</span></a></small><br>`;
         }
     }
 

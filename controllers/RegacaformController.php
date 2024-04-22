@@ -5,7 +5,7 @@ namespace app\controllers;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
-class AcaprvformController extends Controller
+class RegacaformController extends Controller
 {
     public function behaviors()
     {
@@ -26,18 +26,18 @@ class AcaprvformController extends Controller
     public function actionIndex(?string $formType = null)
     {
         $this->layout = false;
-        return $this->render('acaprvlist', ['formType' => $formType]);
+        return $this->render('regacalist', ['formType' => $formType]);
     }
 
-    public function actionAcaprvform(?int $formListID = null, ?string $formType = null)
+    public function actionRegacaform(?string $formListID = null, ?string $formType = null)
     {
         $this->layout = false;
-        return $this->render('acaprvform', ['formListID' => $formListID, 'formType' => $formType]);
+        return $this->render('regacaform', ['formListID' => $formListID, 'formType' => $formType]);
     }
 
-    // auth from hrms
-    public function actionAcaprvform_auth(?int $formListID = null, ?string $formType = null)
-    {
-        return $this->render('acaprvform', ['formListID' => $formListID, 'formType' => $formType]);
-    }
+    // // auth from hrms
+    // public function actionAcaprvform_auth(?int $formListID = null, ?string $formType = null)
+    // {
+    //     return $this->render('acaprvform', ['formListID' => $formListID, 'formType' => $formType]);
+    // }
 }

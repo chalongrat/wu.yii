@@ -27,12 +27,18 @@ class CultureformController extends Controller
     public function actionIndex(?string $formType = null)
     {
         $this->layout = false;
-        return $this->render('culturelist', ['formType' => $formType]);
+        return $this->render('culturelist', ['formType' => $formType, 'bypass' => null]);
     }
 
-    public function actionCuleditform(?int $formListID = null)
+    public function actionCuleditform(?int $formListID = null, ?string $formType = null)
     {
         $this->layout = false;
-        return $this->render('cultureform', ['formListID' => $formListID]);
+        return $this->render('cultureform', ['formListID' => $formListID, 'formType' => $formType]);
+    }
+
+    // auth from hrms
+    public function actionCultureform_auth(?int $formListID = null, ?string $formType = null)
+    {
+        return $this->render('cultureform', ['formListID' => $formListID, 'formType' => $formType]);
     }
 }

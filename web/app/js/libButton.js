@@ -1,8 +1,9 @@
 // const baseUrl1 = 'http://192.168.117.200/apis/';
 // const baseUrl1 = "https://apisprd.wu.ac.th/apis/";
 // const baseUrl1 = "https://apisqas.wu.ac.th/apis/";
-const baseUrl1 = "https://apisqas.wu.ac.th/";
+// const baseUrl1 = "https://apisqas.wu.ac.th/";
 //  const baseUrl1 = "http://192.168.42.112/apis/";
+const baseUrl1 = "http://10.250.2.9/apis/";
 
 function buttonClass() {
     var formData = {
@@ -41,7 +42,12 @@ function buttonClass() {
                 $("[name='btn_210']").text(name.button.btn_210);
             }
         },
-        error: function () {
+        error: function (xhr, status, error) {
+            console.log(xhr);
+            console.log(xhr.status);
+            console.log(status);
+            console.log(error);
+
             console.log("Error in Operation");
         },
     });

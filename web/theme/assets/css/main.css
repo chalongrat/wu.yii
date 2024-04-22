@@ -8862,25 +8862,28 @@ a:hover {
 .auth .auth_left {
   background: #fff;
   display: flex;
-  align-items: center;
   height: 100vh;
   width: 2300px;
   padding: 0 20px;
+
+  /* จัดให้อยู่ตรงกลางในแนวนอน */
+  justify-content: center; 
+
+  /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+  align-items: center; 
 }
 
 .auth .auth_right {
   display: flex;
-  justify-content: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
-  align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-  height: 100vh;
+  /* จัดให้อยู่ตรงกลางในแนวนอน */
+  /* justify-content: center;  */
 
-  background: #1cbbb4;
-  /* width: calc(100% - 400px); */
+  /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+  align-items: center; 
+  height: 100vh;
+  background: #f7d97fe6;
   width: 100%;
   height: 100%;
-  /* height: calc(100% - 400px); */
-  text-align: center;
-  text-align: middle;
 }
 
 @media screen and (max-width: 1200px) {
@@ -10827,7 +10830,7 @@ a.card-tabs-item.active {
   border: 0;
   min-width: 8rem;
   font-size: 14px;
-  top: 40px !important;
+  /* top: 40px !important; */
 }
 
 .dropdown-menu .dropdown-item {
@@ -18607,4 +18610,28 @@ select.form-control {
 
 .tree ul li:last-child:before {
   background: transparent !important;
+}
+
+
+.select2-container--default .select2-selection--single {
+  border-color: #e8e9e9 !important;
+  height: 35px !important;
+  display: flex !important; 
+  /* justify-content: center !important; */
+  vertical-align: middle !important;
+  /* text-align: center !important; */
+}
+
+/* เปลี่ยนสีเส้นขอบเมื่อเมาส์ hover อยู่เหนือ Select2 */
+.select2-container--default .select2-selection--single:hover {
+  /* border-color: red; */
+  width: 100%; /* ปรับเป็นค่าที่ต้องการ */
+  border-color: #e8e9e9 !important;
+}
+
+/* เปลี่ยนสีเส้นขอบเมื่อเกิด focus อยู่ใน Select2 */
+.select2-container--default .select2-selection--single:focus {
+  /* border-color: red; */
+  width: 100%; /* ปรับเป็นค่าที่ต้องการ */
+  border-color: #e8e9e9 !important;
 }

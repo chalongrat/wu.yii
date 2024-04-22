@@ -37,7 +37,7 @@ class LanguageSelector implements BootstrapInterface
                 $identity = User::findOne(['ID' => Yii::$app->user->id]);
                 if ($identity) {
                     $identity->USER_LANG = $app->language;
-                    $identity->save();
+                    // $identity->save();
                     Yii::$app->user->setIdentity($identity);
                 }
             }

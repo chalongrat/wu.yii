@@ -15,7 +15,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return 'DBACFG.CFG_USER';
     }
 
-    public static function primaryKey() {
+    public static function primaryKey()
+    {
         return ["ID"];
     }
 
@@ -34,9 +35,14 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         ];
     }
 
+    public static function findByPersonid($person_id)
+    {
+        return static::findOne(['PERSON_ID' => $person_id, 'STATUS' => 1]);
+    }
 
-    public static function findByUsername($username) {
-        return static::findOne(['USERNAME'=>$username, 'STATUS' => 1]);
+    public static function findByUsername($username)
+    {
+        return static::findOne(['USERNAME' => $username, 'STATUS' => 1]);
     }
 
     public function getAuthKey()
@@ -56,16 +62,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public static function findIdentity($id)
     {
-        return static::findOne(['ID'=>$id, 'STATUS' => 1]);
+        return static::findOne(['ID' => $id, 'STATUS' => 1]);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)
     {
         return static::findOne(['ACCESS_TOKEN' => $token]);
+        // return static::findOne(['PASSWORD_HASH' => $token]);
     }
 
-    public function validatePassword($password) {  
+    public function validatePassword($password)
+    {
         return Yii::$app->security->validatePassword($password, $this->PASSWORD_HASH);
     }
-
 }
